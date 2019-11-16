@@ -1,0 +1,34 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<xs:schema xmlns:xs="http://www.w3.org/2001/XMLSchema" attributeFormDefault="unqualified"
+           elementFormDefault="qualified">
+
+    <xs:element name="oceny" type="typOceny"/>
+
+    <xs:complexType name="typOceny">
+        <xs:sequence>
+            <xs:element name="przedmiot" type="typPrzedmiot" maxOccurs="unbounded" minOccurs="1"/>
+        </xs:sequence>
+    </xs:complexType>
+
+    <xs:complexType name="typPrzedmiot">
+        <xs:sequence>
+            <xs:element name="nazwa" type="xs:string"/>
+            <xs:element name="grupa" type="typGrupa" maxOccurs="unbounded"/>
+        </xs:sequence>
+    </xs:complexType>
+
+    <xs:complexType name="typGrupa">
+        <xs:sequence>
+            <xs:element type="xs:string" name="nazwa"/>
+            <xs:element type="typUczen" name="uczen" maxOccurs="unbounded"/>
+        </xs:sequence>
+    </xs:complexType>
+
+    <xs:complexType name="typUczen">
+        <xs:sequence>
+            <xs:element type="xs:string" name="imie"/>
+            <xs:element type="xs:string" name="nazwisko"/>
+            <xs:element type="xs:double" name="ocena" maxOccurs="unbounded"/>
+        </xs:sequence>
+    </xs:complexType>
+</xs:schema>

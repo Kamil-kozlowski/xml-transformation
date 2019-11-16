@@ -1,0 +1,47 @@
+<!DOCTYPE HTML>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Projekt zaliczeniowy</title>
+    <style>
+        * {
+            box-sizing: border-box;
+        }
+    </style>
+</head>
+
+<body>
+<header>
+    <h1 class="main-header" style="text-align:center;">Projekt zaliczeniowy XML</h1>
+</header>
+<div style="display:flex;width:100%;justify-content:center;overflow:auto;padding-bottom:80px;">
+    <div class="container xml-input-container" style="width:50%;display:flex;flex-direction:column;justify-content:flex-start;align-items:center;">
+
+        <p style="text-align:center;">Wprowadź XML</p>
+        <form th:action="@{/filterXml}" th:object="${xmlAndFilters}" method="post" style="display:flex;align-items:center;justify-content:center;flex-direction:column;">
+            <textarea style="width:400px;height:500px;resize:none;" th:field="*{xml}"></textarea>
+            <button type="submit" style="width:50%;position:center;">Wygeneruj tabelkę</button>
+        </form>
+
+        <div th:switch="${xmlValid}" style="width:50%;display:flex;justify-content:center;align-items:center;">
+            <span th:case="'true'" style="color:green;text-align:center;">Walidacja poprawna</span>
+            <span th:case="'false'" style="color:red;text-align:center;">
+                <p>Walidacja niepoprawna</p>
+                <p style="font-size:10px;" th:text="(${errorMsg})"/>
+                <p style="font-size:10px;" th:text="(${errorLineNumber})"/>
+            </span>
+            <span th:case="*"></span>
+        </div>
+
+    </div>
+    <div style="width:50%;display:flex;align-items:center;justify-content:center;">
+        <span th:utext=" ${formatted}"></span>
+    </div>
+</div>
+<footer style="background-color:grey;height:60px;position:fixed;bottom:0;left:0;align-items:center;justify-content:center;width:100%;display:flex">
+<span style="color:white;">Kamil Kozłowski - standardy XML 2019</span>
+</footer>
+</body>
+</html>
